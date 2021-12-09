@@ -11,3 +11,6 @@ curl --location --request POST 'localhost:3000/create' \
 --header 'date: "11/2/10"' \
 --header 'log: "test log"'
 ```
+
+import collection via postman using:
+`~/src/http/avy-log.postman_collection.json`
