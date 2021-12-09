@@ -4,7 +4,7 @@ services:
   mongodb:
     image: mongo:5.0.2
     restart: unless-stopped
-    env_file: ./.env
+#    env_file: ./src/.env
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
       - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
@@ -17,7 +17,7 @@ services:
       - mongodb
     build: ./src
     restart: unless-stopped
-    env_file: ./.env
+#    env_file: ./.env
     ports:
       - "8081"
     environment:
