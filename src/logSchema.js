@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
-var Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
-var log = new Schema({
+const log = new Schema({
     title: String,
     date: String,
     log: String
-})
+});
 
-const Data = mongoose.mode("data", log)
+const Data = mongoose.model("data", log)
 module.exports = Data
