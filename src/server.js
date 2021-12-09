@@ -1,15 +1,20 @@
+'use strict'
+
 const express = require('express')
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 var app = express()
 var Data = require('./logSchema')
-
-mongoose.connect("mongodb://localhost/avyDB")
-
-mongoose.connection.once("open", () => {
-    console.log("connected to mongoose")
-}).on("error", (error) => {
-    console.log("failed to connect " + error)
-})
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const PORT = 3000
+const HOST = '0.0.0.0'
+// mongoose.connect("mongodb://mongo/avyDB")
+//
+// mongoose.connection.once("open", () => {
+//     console.log("connected to mongoose")
+// }).on("error", (error) => {
+//     console.log("failed to connect " + error)
+// })
 
 
 // CREATE log
@@ -40,9 +45,14 @@ app.post("/create", (req, res) => {
 // FETCH ALL logs
 // get
 
-
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors())
+app.use(bodyParser.json())
+app.get('/', (req, res) => {
+    res.send('Hello world')
+})
 
 //localhost:8081
-var server = app.listen(8081, "localhost", ()=>{
+var server = app.listen(PORT, HOST, ()=>{
     console.log("server is running")
 })
