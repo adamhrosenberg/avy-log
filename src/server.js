@@ -33,15 +33,41 @@ app.post("/create", (req, res) => {
     })
 })
 
-
 // DELETE log
 //post
+app.post("/delete", (req, res) => {
+    Data.findOneAndRemove({
+        _id: req.get("id")
+    }, (err) => {
+        console.log("failed to delete " + err)
+    })
+    res.send("deleted")
+})
 
 // UPDATE log
 // post
+app.post("/update", (req, res) => {
+    Data.findOneAndUpdate({
+        _id: req.get("id")
+    }, {
+        title: req.get("title"),
+        date: req.get("date"),
+        log: req.get("log"),
+    }, (err) => {
+        //todo: fix why this is being called even when update was successful
+        console.log("error")
+    })
+    res.send("updated")
+})
 
 // FETCH ALL logs
 // get
+app.get('/fetch', (req, res) => {
+    Data.find({}).then((DBitems) => {
+        res.send(DBitems)
+    })
+})
+
 
 app.get('/', (req, res) => {
     res.send('Hello world')
