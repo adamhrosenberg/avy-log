@@ -17,7 +17,7 @@
 					},
 					{
 						"key": "date",
-						"value": "\"11/2/10\"",
+						"value": "\"11/14/10\"",
 						"type": "text"
 					},
 					{
@@ -34,6 +34,48 @@
 					"port": "3000",
 					"path": [
 						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/delete",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "id",
+						"value": "61b219a479ef52e3c9af3f2b",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/fetch",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/fetch",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"fetch"
 					]
 				}
 			},

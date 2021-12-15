@@ -63,6 +63,7 @@ app.post("/update", (req, res) => {
 // FETCH ALL logs
 // get
 app.get('/fetch', (req, res) => {
+    console.log("fetching...")
     Data.find({}).then((DBitems) => {
         res.send(DBitems)
     })

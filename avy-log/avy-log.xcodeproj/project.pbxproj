@@ -13,6 +13,9 @@
 		F8DD9909276980EC00B7E72B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8DD9907276980EC00B7E72B /* Main.storyboard */; };
 		F8DD990B276980ED00B7E72B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8DD990A276980ED00B7E72B /* Assets.xcassets */; };
 		F8DD990E276980ED00B7E72B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8DD990C276980ED00B7E72B /* LaunchScreen.storyboard */; };
+		F8DD99172769911B00B7E72B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F8DD99162769911B00B7E72B /* Alamofire */; };
+		F8DD99192769913A00B7E72B /* APIFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DD99182769913A00B7E72B /* APIFunctions.swift */; };
+		F8DD991B27699C8E00B7E72B /* AddLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DD991A27699C8E00B7E72B /* AddLogViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,8 @@
 		F8DD990A276980ED00B7E72B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F8DD990D276980ED00B7E72B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F8DD990F276980EE00B7E72B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8DD99182769913A00B7E72B /* APIFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFunctions.swift; sourceTree = "<group>"; };
+		F8DD991A27699C8E00B7E72B /* AddLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLogViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8DD99172769911B00B7E72B /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +69,8 @@
 				F8DD990A276980ED00B7E72B /* Assets.xcassets */,
 				F8DD990C276980ED00B7E72B /* LaunchScreen.storyboard */,
 				F8DD990F276980EE00B7E72B /* Info.plist */,
+				F8DD99182769913A00B7E72B /* APIFunctions.swift */,
+				F8DD991A27699C8E00B7E72B /* AddLogViewController.swift */,
 			);
 			path = "avy-log";
 			sourceTree = "<group>";
@@ -83,6 +91,9 @@
 			dependencies = (
 			);
 			name = "avy-log";
+			packageProductDependencies = (
+				F8DD99162769911B00B7E72B /* Alamofire */,
+			);
 			productName = "avy-log";
 			productReference = F8DD98FE276980EC00B7E72B /* avy-log.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +122,9 @@
 				Base,
 			);
 			mainGroup = F8DD98F5276980EC00B7E72B;
+			packageReferences = (
+				F8DD99152769911B00B7E72B /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = F8DD98FF276980EC00B7E72B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,6 +152,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8DD99192769913A00B7E72B /* APIFunctions.swift in Sources */,
+				F8DD991B27699C8E00B7E72B /* AddLogViewController.swift in Sources */,
 				F8DD9906276980EC00B7E72B /* ViewController.swift in Sources */,
 				F8DD9902276980EC00B7E72B /* AppDelegate.swift in Sources */,
 				F8DD9904276980EC00B7E72B /* SceneDelegate.swift in Sources */,
@@ -360,6 +376,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F8DD99152769911B00B7E72B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F8DD99162769911B00B7E72B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8DD99152769911B00B7E72B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F8DD98F6276980EC00B7E72B /* Project object */;
 }
