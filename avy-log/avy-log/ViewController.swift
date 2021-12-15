@@ -33,8 +33,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         APIFunctions.functions.fetchLogs()
         logsListTableView.delegate = self;
         logsListTableView.dataSource = self;
-        
-        
     }
 
 
