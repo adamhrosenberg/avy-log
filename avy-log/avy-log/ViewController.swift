@@ -12,7 +12,18 @@ protocol DataDelegate {
 }
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     var logs = [Log]()
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! AddLogViewController
+        
+        if (segue.identifier == "updateLogSegue") {
+            vc.log = logs[logsListTableView.indexPathForSelectedRow!.row]
+            vc.update = true
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return logs.count
     }
@@ -25,6 +36,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 
     @IBOutlet weak var logsListTableView: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        APIFunctions.functions.fetchLogs()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        APIFunctions.functions.fetchLogs()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

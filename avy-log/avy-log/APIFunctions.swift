@@ -33,6 +33,15 @@ class APIFunctions {
         AF.request("http://192.168.86.176:3000/create", method: .post, encoding: URLEncoding.httpBody, headers: ["title": title, "log": log, "date": date])
             .responseJSON {
                 response in
+                print(response)
+            }
+    }
+    
+    func updateLog(date: String, title: String, log: String, id: String) {
+        AF.request("http://192.168.86.176:3000/update", method: .post, encoding: URLEncoding.httpBody, headers: ["title": title, "log": log, "date": date, "id": id])
+            .responseJSON {
+                response in
+                print(response)
             }
     }
 }
