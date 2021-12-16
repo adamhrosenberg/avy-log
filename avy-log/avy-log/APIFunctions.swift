@@ -44,4 +44,12 @@ class APIFunctions {
                 print(response)
             }
     }
+    
+    func deleteLog(id: String) {
+        AF.request("http://192.168.86.176:3000/delete", method: .post, encoding: URLEncoding.httpBody, headers: ["id": id])
+            .responseJSON {
+                response in
+                print(response)
+            }
+    }
 }

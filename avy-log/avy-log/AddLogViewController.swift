@@ -16,9 +16,16 @@ class AddLogViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var bodyTextView: UITextView!
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
+
+    override func viewWillAppear(_ animated: Bool) {
+        if (update == false) {
+            self.deleteButton.isEnabled = false
+            self.deleteButton.title = ""
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("new log time..")
         if (update == true) {
             titleTextField.text = log!.title
             bodyTextView.text = log!.log
@@ -35,6 +42,11 @@ class AddLogViewController: UIViewController {
 
         self.navigationController?.popViewController(animated: true)
 
+    }
+    
+    @IBAction func deleteClick(_ sender: Any) {
+        APIFunctions.functions.deleteLog(id: log!._id)
+        self.navigationController?.popViewController(animated: true)
     }
 
     /*

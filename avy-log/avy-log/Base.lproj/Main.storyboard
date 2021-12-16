@@ -52,7 +52,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="The Slidepath" id="YmX-q5-coK">
                         <barButtonItem key="leftBarButtonItem" title="Your Logs" id="cOH-D1-cmd"/>
-                        <barButtonItem key="rightBarButtonItem" title="+" id="PV4-46-a2N">
+                        <barButtonItem key="rightBarButtonItem" title="Submit Log" id="PV4-46-a2N">
                             <connections>
                                 <segue destination="Huf-nG-oPm" kind="show" id="3AE-MX-DzD"/>
                             </connections>
@@ -130,11 +130,15 @@
                             </barButtonItem>
                             <barButtonItem title="Delete" id="6Ca-Iv-hsz">
                                 <color key="tintColor" systemColor="systemRedColor"/>
+                                <connections>
+                                    <action selector="deleteClick:" destination="Huf-nG-oPm" id="E0G-PT-1C7"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="bodyTextView" destination="nlZ-jo-F7L" id="kdW-TM-Mg0"/>
+                        <outlet property="deleteButton" destination="6Ca-Iv-hsz" id="o2o-QA-Ww4"/>
                         <outlet property="saveButton" destination="mXh-tK-4aZ" id="0b9-DZ-SKE"/>
                         <outlet property="titleTextField" destination="D9U-I8-be9" id="xse-rM-fpN"/>
                     </connections>
