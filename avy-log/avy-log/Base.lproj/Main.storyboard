@@ -139,6 +139,7 @@
                     <connections>
                         <outlet property="bodyTextView" destination="nlZ-jo-F7L" id="kdW-TM-Mg0"/>
                         <outlet property="deleteButton" destination="6Ca-Iv-hsz" id="o2o-QA-Ww4"/>
+                        <outlet property="pageTitle" destination="hZ2-UB-bkC" id="Eot-Jm-OVZ"/>
                         <outlet property="saveButton" destination="mXh-tK-4aZ" id="0b9-DZ-SKE"/>
                         <outlet property="titleTextField" destination="D9U-I8-be9" id="xse-rM-fpN"/>
                     </connections>

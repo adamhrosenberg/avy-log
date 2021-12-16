@@ -17,11 +17,12 @@ class AddLogViewController: UIViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var deleteButton: UIBarButtonItem!
-
+    
     override func viewWillAppear(_ animated: Bool) {
         if (update == false) {
             self.deleteButton.isEnabled = false
             self.deleteButton.title = ""
+            
         }
     }
     override func viewDidLoad() {
