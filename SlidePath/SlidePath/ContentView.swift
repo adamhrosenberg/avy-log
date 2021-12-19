@@ -9,11 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     @State var selectedIndex = 0
+    @State var shouldFullScreen = false
     let tabBarImageNames = ["person", "gear", "plus.app.fill", "pencil", "lasso"]
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             
             ZStack {
+                Spacer()
+                    .fullScreenCover(isPresented: $shouldFullScreen, content: {
+                        Button(action: {shouldFullScreen.toggle()}, label: {
+                            Text("main")
+                            
+                        })
+                    })
                 switch selectedIndex {
                 case 0:
                     NavigationView {
@@ -25,15 +33,27 @@ struct ContentView: View {
                         Text("TEXT")
                     }
                 default:
-                    Text("remaining tabs")
+                    NavigationView {
+                        Text("remaining butons")
+                    }
                 }
             }
             
-            Spacer()
+//            Spacer()
+            
+            Divider()
+                .padding(.bottom, 8)
             
             HStack {
                 ForEach(0..<5) { num in
                     Button(action: {
+                        
+                        if (num == 2) {
+                            shouldFullScreen.toggle()
+                            return
+                        }
+                        
+                        
                         selectedIndex = num
                     }, label: {
                         Spacer()
