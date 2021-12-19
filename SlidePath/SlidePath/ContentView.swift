@@ -23,28 +23,46 @@ struct ContentView: View {
                         })
                     })
                 switch selectedIndex {
-                    case 0:
-                        NavigationView {
-                            ScrollView {
-                                Text("TEXT")
+                case 0:
+                    NavigationView {
+                        List(0 ..< 20) { item in
+                            Image(systemName: "note.text")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 70)
+                                .cornerRadius(4)
+                            
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text("slidepath entry title")
+                                        .fontWeight(.semibold)
+                                        .lineLimit(2)
+                                        .minimumScaleFactor(0.5)
+                                     
+                                     Text("slidepath entry date")
+                                        .font(.subheadline)
+                                    .foregroundColor(.secondary)
                             }
-                            .navigationTitle("List of entries")
-                        }
-                    case 1:
-                        NavigationView {
-                            Text("TODO: Visal Map View")
-                        }
-                    case 3:
-                        NavigationView {
-                            Text("Your Entries")
-                        }
-                    default:
-                        NavigationView {
-                            Text("Your profile")
+                            
+                            .navigationTitle("Slidepath Feed")
                         }
                     }
-            }
                     
+                case 1:
+                    NavigationView {
+                        Text("TODO: Visal Map View")
+                    }
+                case 3:
+                    NavigationView {
+                        Text("Your Entries")
+                            .navigationTitle("Test")
+                    }
+                default:
+                    NavigationView {
+                        Text("Your profile")
+                    }
+                }
+            }
+            
             Divider()
                 .padding(.bottom, 8)
             
@@ -91,15 +109,3 @@ struct ContentView_Previews: PreviewProvider {
         }
     }
 }
-//TabView {
-//    Text("first")
-//        .tabItem {
-//            Image(systemName: "person")
-//            Text("First")
-//        }
-//    Text("Second")
-//        .tabItem {
-//            Image(systemName: "gear")
-//            Text("First")
-//        }
-//}
