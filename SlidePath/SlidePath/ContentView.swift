@@ -35,16 +35,18 @@ struct ContentView: View {
                         
                         HStack {
                             List(logs, id: \._id) { log in
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text(log.title)
-                                        .fontWeight(.semibold)
-                                        .lineLimit(2)
-                                        .minimumScaleFactor(0.5)
-                                    
-                                    Text(log.date)
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
-                                }
+                                NavigationLink(destination: LogDetailView(log: log), label: {
+                                    VStack(alignment: .leading, spacing: 5) {
+                                        Text(log.title)
+                                            .fontWeight(.semibold)
+                                            .lineLimit(2)
+                                            .minimumScaleFactor(0.5)
+                                        
+                                        Text(log.date)
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    }
+                                })
                             }
                             .navigationTitle("Slidepath Feed")
                             .onAppear(perform: {
