@@ -6,11 +6,15 @@
 //
 
 import SwiftUI
-
+protocol DataDelegate {
+    func updateArray(newArray: String)
+}
 struct ContentView: View {
     @State var selectedIndex = 0
     @State var shouldFullScreen = false
     let tabBarImageNames = ["house", "map", "plus.app.fill", "list.dash", "person"]
+    var logs = [Log]()
+    
     var body: some View {
         VStack(spacing: 0) {
             
@@ -102,5 +106,16 @@ struct ContentView_Previews: PreviewProvider {
             ContentView()
                 .previewDevice("iPhone 13 Pro Max")
         }
+    }
+}
+extension ViewController: DataDelegate {
+    func updateArray(newArray: String) {
+        do {
+            logs = try JSONDecoder().decode([Log].self, from: newArray.data(using: .utf8)!)
+            print("logs", logs)
+        } catch {
+            print("failed to decode")
+        }
+        self.logsListTableView.reloadData()
     }
 }
