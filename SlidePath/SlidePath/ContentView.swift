@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State var selectedIndex = 0
     @State var shouldFullScreen = false
-    let tabBarImageNames = ["person", "gear", "plus.app.fill", "pencil", "lasso"]
+    let tabBarImageNames = ["house", "map", "plus.app.fill", "list.dash", "person"]
     var body: some View {
         VStack(spacing: 0) {
             
@@ -23,24 +23,28 @@ struct ContentView: View {
                         })
                     })
                 switch selectedIndex {
-                case 0:
-                    NavigationView {
-                        Text("first")
-                            .navigationTitle("First tab")
+                    case 0:
+                        NavigationView {
+                            ScrollView {
+                                Text("TEXT")
+                            }
+                            .navigationTitle("List of entries")
+                        }
+                    case 1:
+                        NavigationView {
+                            Text("TODO: Visal Map View")
+                        }
+                    case 3:
+                        NavigationView {
+                            Text("Your Entries")
+                        }
+                    default:
+                        NavigationView {
+                            Text("Your profile")
+                        }
                     }
-                case 1:
-                    ScrollView {
-                        Text("TEXT")
-                    }
-                default:
-                    NavigationView {
-                        Text("remaining butons")
-                    }
-                }
             }
-            
-//            Spacer()
-            
+                    
             Divider()
                 .padding(.bottom, 8)
             
