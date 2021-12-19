@@ -34,7 +34,6 @@ struct ContentView: View {
                     NavigationView {
                         
                         HStack {
-                            
                             List(logs, id: \._id) { log in
                                 VStack(alignment: .leading, spacing: 5) {
                                     Text(log.title)
