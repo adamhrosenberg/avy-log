@@ -31,32 +31,22 @@ struct ContentView: View {
                     })
                 switch selectedIndex {
                 case 0:
+                    // Home page
                     NavigationView {
-                        
-                        HStack {
-                            List(logs, id: \._id) { log in
-                                NavigationLink(destination: LogDetailView(log: log), label: {
-                                    VStack(alignment: .leading, spacing: 5) {
-                                        Text(log.title)
-                                            .fontWeight(.semibold)
-                                            .lineLimit(2)
-                                            .minimumScaleFactor(0.5)
-                                        
-                                        Text(log.date)
-                                            .font(.subheadline)
-                                            .foregroundColor(.secondary)
-                                    }
-                                })
-                            }
-                            .navigationTitle("Slidepath Feed")
-                            .onAppear(perform: {
-                                Api().getLogs { logs in
-                                    self.logs = logs
-                                    print(self.logs)
+                        List(logs, id: \._id) { log in
+                            NavigationLink(destination: LogDetailView(log: log), label: {
+                                LogCell(log: log)
                                 }
-                                //                                APIFunctions.functions.fetchLogs()
-                            })
+                            )
                         }
+                        .navigationTitle("Slidepath Feed")
+                        .onAppear(perform: {
+                            Api().getLogs { logs in
+                                self.logs = logs
+                                print(self.logs)
+                            }
+                        })
+                        
                     }
                     
                 case 1:
@@ -86,8 +76,6 @@ struct ContentView: View {
                             shouldFullScreen.toggle()
                             return
                         }
-                        
-                        
                         selectedIndex = num
                     }, label: {
                         Spacer()
@@ -123,3 +111,21 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+
+struct LogCell: View {
+    var log: Log
+    var body: some View {
+        HStack{
+            VStack(alignment: .leading, spacing: 5) {
+                Text(log.title)
+                    .fontWeight(.semibold)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.5)
+                
+                Text(log.date)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+        }
+    }
+}

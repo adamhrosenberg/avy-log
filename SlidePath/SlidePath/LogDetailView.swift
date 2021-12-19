@@ -25,6 +25,7 @@ struct LogDetailView: View {
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
+            
             HStack(spacing: 40) {
                 Label("1000", systemImage: "eye.fill")
                     .font(.subheadline)
