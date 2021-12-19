@@ -25,24 +25,19 @@ struct ContentView: View {
                 switch selectedIndex {
                 case 0:
                     NavigationView {
-                        List(0 ..< 20) { item in
-                            Image(systemName: "note.text")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 70)
-                                .cornerRadius(4)
-                            
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text("slidepath entry title")
+                        HStack {
+                            List(0..<20) { item in
+                                VStack(alignment: .leading, spacing: 5) {
+                                    Text("slidepath entry title")
                                         .fontWeight(.semibold)
                                         .lineLimit(2)
                                         .minimumScaleFactor(0.5)
-                                     
-                                     Text("slidepath entry date")
+                                    
+                                    Text("slidepath entry date")
                                         .font(.subheadline)
-                                    .foregroundColor(.secondary)
+                                        .foregroundColor(.secondary)
+                                }
                             }
-                            
                             .navigationTitle("Slidepath Feed")
                         }
                     }
