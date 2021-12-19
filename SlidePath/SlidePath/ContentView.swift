@@ -6,16 +6,20 @@
 //
 
 import SwiftUI
+
 protocol DataDelegate {
     func updateArray(newArray: String)
 }
 struct ContentView: View {
     @State var selectedIndex = 0
     @State var shouldFullScreen = false
+    
     let tabBarImageNames = ["house", "map", "plus.app.fill", "list.dash", "person"]
-    var logs = [Log]()
+    
+    @State var logs: [Log] = []
     
     var body: some View {
+        
         VStack(spacing: 0) {
             
             ZStack {
@@ -23,26 +27,34 @@ struct ContentView: View {
                     .fullScreenCover(isPresented: $shouldFullScreen, content: {
                         Button(action: {shouldFullScreen.toggle()}, label: {
                             Text("main")
-                            
                         })
                     })
                 switch selectedIndex {
                 case 0:
                     NavigationView {
+                        
                         HStack {
-                            List(0..<20) { item in
+                            
+                            List(logs, id: \._id) { log in
                                 VStack(alignment: .leading, spacing: 5) {
-                                    Text("slidepath entry title")
+                                    Text(log.title)
                                         .fontWeight(.semibold)
                                         .lineLimit(2)
                                         .minimumScaleFactor(0.5)
                                     
-                                    Text("slidepath entry date")
+                                    Text(log.date)
                                         .font(.subheadline)
                                         .foregroundColor(.secondary)
                                 }
                             }
                             .navigationTitle("Slidepath Feed")
+                            .onAppear(perform: {
+                                Api().getLogs { logs in
+                                    self.logs = logs
+                                    print(self.logs)
+                                }
+                                //                                APIFunctions.functions.fetchLogs()
+                            })
                         }
                     }
                     
@@ -98,6 +110,7 @@ struct ContentView: View {
         }
         
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -108,14 +121,4 @@ struct ContentView_Previews: PreviewProvider {
         }
     }
 }
-extension ViewController: DataDelegate {
-    func updateArray(newArray: String) {
-        do {
-            logs = try JSONDecoder().decode([Log].self, from: newArray.data(using: .utf8)!)
-            print("logs", logs)
-        } catch {
-            print("failed to decode")
-        }
-        self.logsListTableView.reloadData()
-    }
-}
+
