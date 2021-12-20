@@ -13,7 +13,7 @@ protocol DataDelegate {
 struct ContentView: View {
     @State var selectedIndex = 0
     @State var shouldFullScreen = false
-    
+
     let tabBarImageNames = ["house", "map", "plus.app.fill", "list.dash", "person"]
     
     @State var logs: [Log] = []
@@ -25,8 +25,22 @@ struct ContentView: View {
             ZStack {
                 Spacer()
                     .fullScreenCover(isPresented: $shouldFullScreen, content: {
-                                    LogEditView(log: Log(title: "", date: "", _id: "", log: ""), updating: false)
+                        HStack {
+                            Text("Enter Log Info")
+                            Spacer()
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(.black)
+                                .onTapGesture(perform: {
+                                    withAnimation {
+                                        self.shouldFullScreen.toggle()
+                                    }
+                                })
+
+                        }
+                        LogEditView(goToIndex: $selectedIndex, shouldShowFullScreen: $shouldFullScreen, log: Log(title: "", date: "", _id: "", log: ""), updating: false)
+
                     })
+                
                 switch selectedIndex {
                 case 0:
                     // Home page
@@ -52,11 +66,16 @@ struct ContentView: View {
                     NavigationView {
                         Text("TODO: Visal Map View")
                     }
+                case 2:
+                    NavigationView {
+                        LogEditView(goToIndex: $selectedIndex, shouldShowFullScreen: $shouldFullScreen, log: Log(title: "", date: "", _id: "", log: ""), updating: false)
+                    
+                    }
                 case 3:
                     // Your Entries
                     NavigationView {
                         List(logs, id: \._id) { log in
-                            NavigationLink(destination: LogEditView(log: log, updating: true), label: {
+                            NavigationLink(destination: LogEditView(goToIndex: $selectedIndex, shouldShowFullScreen: self.$shouldFullScreen, log: log, updating: true), label: {
                                 LogCell(log: log)
                             }
                             )

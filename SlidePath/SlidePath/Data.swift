@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct Log: Decodable {
     var title: String
@@ -15,7 +16,7 @@ struct Log: Decodable {
 }
 
 class Api {
-    func getLogs(completion: @escaping ([Log]) -> ()) {
+    func getLogs2(completion: @escaping ([Log]) -> ()) {
         guard let url = URL(string: "http://192.168.86.176:3000/fetch") else {return}
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -27,4 +28,24 @@ class Api {
         .resume()
         
     }
+
+    func getLogs(completion: @escaping ([Log]) -> ()) {
+        AF.request("http://192.168.86.176:3000/fetch").response{ response in
+            let logs = try! JSONDecoder().decode([Log].self, from: response.data!)
+
+            print("response ", response.data!)
+            DispatchQueue.main.async {
+                completion(logs)
+            }
+        }
+    }
+    
+    func addLog(date: String, title: String, log: String) {
+        AF.request("http://192.168.86.176:3000/create", method: .post, encoding: URLEncoding.httpBody, headers: ["title": title, "log": log, "date": date])
+            .responseJSON {
+                response in
+                print(response)
+            }
+    }
+    
 }
