@@ -13,7 +13,7 @@ protocol DataDelegate {
 struct ContentView: View {
     @State var selectedIndex = 0
     @State var shouldFullScreen = false
-
+    
     let tabBarImageNames = ["house", "map", "plus.app.fill", "list.dash", "person"]
     
     @State var logs: [Log] = []
@@ -35,10 +35,11 @@ struct ContentView: View {
                                         self.shouldFullScreen.toggle()
                                     }
                                 })
-
+                            
                         }
-                        LogEditView(goToIndex: $selectedIndex, shouldShowFullScreen: $shouldFullScreen, log: Log(title: "", date: "", _id: "", log: ""), updating: false)
-
+                        LogEditView(goToIndex: $selectedIndex,
+                                    log: Log(title: "", date: "", _id: "", log: ""), updating: false)
+                        
                     })
                 
                 switch selectedIndex {
@@ -68,14 +69,16 @@ struct ContentView: View {
                     }
                 case 2:
                     NavigationView {
-                        LogEditView(goToIndex: $selectedIndex, shouldShowFullScreen: $shouldFullScreen, log: Log(title: "", date: "", _id: "", log: ""), updating: false)
-                    
+                        LogEditView(goToIndex: $selectedIndex, log: Log(title: "", date: "", _id: "", log: ""), updating: false)
+                        
                     }
                 case 3:
                     // Your Entries
                     NavigationView {
                         List(logs, id: \._id) { log in
-                            NavigationLink(destination: LogEditView(goToIndex: $selectedIndex, shouldShowFullScreen: self.$shouldFullScreen, log: log, updating: true), label: {
+                            NavigationLink(destination: LogEditView(
+                                goToIndex: $selectedIndex,
+                                log: log, updating: true), label: {
                                 LogCell(log: log)
                             }
                             )

@@ -14,7 +14,6 @@ class FormViewModel: ObservableObject {
 struct LogEditView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var goToIndex: Int;
-    @Binding var shouldShowFullScreen: Bool;
     var log: Log
     var updating: Bool
     
@@ -59,6 +58,6 @@ struct LogEditView: View {
 
 struct LogEditView_Previews: PreviewProvider {
     static var previews: some View {
-        LogEditView(goToIndex: .constant(0), shouldShowFullScreen: .constant(true), log: Log(title: "title", date: "date", _id: "123", log: "test log body"), updating: true)
+        LogEditView(goToIndex: .constant(0), log: Log(title: "title", date: "date", _id: "123", log: "test log body"), updating: true)
     }
 }
