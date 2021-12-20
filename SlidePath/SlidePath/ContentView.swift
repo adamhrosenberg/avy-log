@@ -25,9 +25,7 @@ struct ContentView: View {
             ZStack {
                 Spacer()
                     .fullScreenCover(isPresented: $shouldFullScreen, content: {
-                        Button(action: {shouldFullScreen.toggle()}, label: {
-                            Text("main")
-                        })
+                                    LogEditView(log: Log(title: "", date: "", _id: "", log: ""), updating: false)
                     })
                 switch selectedIndex {
                 case 0:
@@ -36,7 +34,7 @@ struct ContentView: View {
                         List(logs, id: \._id) { log in
                             NavigationLink(destination: LogDetailView(log: log), label: {
                                 LogCell(log: log)
-                                }
+                            }
                             )
                         }
                         .navigationTitle("Slidepath Feed")
@@ -50,15 +48,29 @@ struct ContentView: View {
                     }
                     
                 case 1:
+                    // Map
                     NavigationView {
                         Text("TODO: Visal Map View")
                     }
                 case 3:
+                    // Your Entries
                     NavigationView {
-                        Text("Your Entries")
-                            .navigationTitle("Test")
+                        List(logs, id: \._id) { log in
+                            NavigationLink(destination: LogEditView(log: log, updating: true), label: {
+                                LogCell(log: log)
+                            }
+                            )
+                        }
+                        .navigationTitle("Your entries")
+                        .onAppear(perform: {
+                            Api().getLogs { logs in
+                                self.logs = logs
+                                print(self.logs)
+                            }
+                        })
                     }
                 default:
+                    // Profile
                     NavigationView {
                         Text("Your profile")
                     }
