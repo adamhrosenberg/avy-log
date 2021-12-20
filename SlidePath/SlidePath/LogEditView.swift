@@ -14,6 +14,7 @@ class FormViewModel: ObservableObject {
 struct LogEditView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var goToIndex: Int;
+    @Binding var logs: [Log];
     var log: Log
     var updating: Bool
     
@@ -41,6 +42,10 @@ struct LogEditView: View {
                 Api().addLog(date: logDate, title: logTitle, log: logBody)
                 goToIndex = updating ? 3 : 0
                 if(!updating) {
+                    Api().getLogs { logs in
+                        self.logs = logs
+                        print(self.logs)
+                    }
                     presentationMode.wrappedValue.dismiss()
                 }
             }, label: {
@@ -58,6 +63,6 @@ struct LogEditView: View {
 
 struct LogEditView_Previews: PreviewProvider {
     static var previews: some View {
-        LogEditView(goToIndex: .constant(0), log: Log(title: "title", date: "date", _id: "123", log: "test log body"), updating: true)
+        LogEditView(goToIndex: .constant(0), logs: .constant([Log(title: "title", date: "date", _id: "123", log: "test log body")]), log: Log(title: "title", date: "date", _id: "123", log: "test log body"), updating: true)
     }
 }

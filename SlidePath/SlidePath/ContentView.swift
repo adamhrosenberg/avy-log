@@ -38,6 +38,7 @@ struct ContentView: View {
                             
                         }
                         LogEditView(goToIndex: $selectedIndex,
+                                    logs: $logs,
                                     log: Log(title: "", date: "", _id: "", log: ""), updating: false)
                         
                     })
@@ -69,7 +70,9 @@ struct ContentView: View {
                     }
                 case 2:
                     NavigationView {
-                        LogEditView(goToIndex: $selectedIndex, log: Log(title: "", date: "", _id: "", log: ""), updating: false)
+                        LogEditView(goToIndex: $selectedIndex,
+                                    logs: $logs,
+                                    log: Log(title: "", date: "", _id: "", log: ""), updating: false)
                         
                     }
                 case 3:
@@ -78,6 +81,7 @@ struct ContentView: View {
                         List(logs, id: \._id) { log in
                             NavigationLink(destination: LogEditView(
                                 goToIndex: $selectedIndex,
+                                logs: $logs,
                                 log: log, updating: true), label: {
                                 LogCell(log: log)
                             }
